@@ -19,6 +19,7 @@ class AuthController extends Controller
         return response()->json([
             'message' => 'User registered successfully',
             'token' => JWTAuth::fromUser($user),
+            'user' => new UserResource($user),
         ], 201);
     }
 
@@ -35,6 +36,7 @@ class AuthController extends Controller
         return response()->json([
             'message' => 'User logged in successfully',
             'token' => $token,
+            'user' => new UserResource($request->user()),
         ], 200);
     }
 
